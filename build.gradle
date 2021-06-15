@@ -11,4 +11,9 @@ repositories {
 
 dependencies {
     testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+
+  }
+
+test {
+    useTestNG()
 }
