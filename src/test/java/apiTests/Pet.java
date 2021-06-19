@@ -20,7 +20,7 @@ public class Pet {
                     .post("https://petstore.swagger.io/v2/pet")
             .then()
                     .log().all()
-                    .body("")
+                    //.body("")
             ;
         }
 }
