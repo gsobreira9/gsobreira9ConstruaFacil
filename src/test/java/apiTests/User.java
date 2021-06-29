@@ -1,5 +1,6 @@
 package apiTests;
 
+import com.sun.xml.bind.v2.TODO;
 import io.restassured.specification.Argument;
 import org.testng.annotations.Test;
 
@@ -13,9 +14,11 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class User {
-    String uri = "https://petstore.swagger.io/v2/user/";
+    String uri = "https://petstore.swagger.io/v2/user";
     int userId = 3737;
     String username = "Leogarcez";
+    String password = "api2021";
+    String token = "";
 
     public String lerJson(String caminhoJson) throws IOException {
         return new String(Files.readAllBytes(Paths.get(caminhoJson)));
@@ -32,9 +35,10 @@ public class User {
                 .post(uri)
         .then()
                 .log().all()
+                .statusCode(200)
                 .body("code", is (200))
                 .body("type", is ("unknown"))
-                .body("message", is ("3737"))
+                .body("message", is (Integer.toString(userId)))
         ;
 
     }
@@ -44,7 +48,7 @@ public class User {
                 .contentType("application/json")
                 .log().all()
         .when()
-                .get(uri + username)
+                .get(uri + "/" + username)
         .then()
                 .log().all()
                 .statusCode(200)
@@ -69,7 +73,7 @@ public class User {
                     .log().all()
                     .body(jsonBody) // Json a ser transmitido para a alteração
             .when()
-                    .put(uri + username)
+                    .put(uri + "/" + username)
             .then()
                     .log().all()
                     .statusCode(200)
@@ -87,7 +91,7 @@ public class User {
                     .contentType("application/json")
                     .log().all()
             .when()
-                    .delete(uri + username)
+                    .delete(uri + "/" + username)
             .then()
                     .log().all()
                     .statusCode(200)
@@ -96,4 +100,27 @@ public class User {
                     .body("message", is(username))
             ;
     }
+    @Test
+    public void login(){
+        String mensagem =
+        given()
+                .contentType(("application/json"))
+                .log().all()
+        .when()
+                .get(uri + "/login?username=" + username + "&password=" + password)
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("code", is(200))
+                .body("type", is ("unknown"))
+        .extract()
+                .path("message")
+
+        ;
+        System.out.println("A mensagem é: " + mensagem);
+        token = mensagem.substring(23);
+        System.out.println("O token eh: " + token);
+    }
+
+        //TODO Fazer o Post do Order (classe Store) pedido.json - Não sabemos pra quem estamos vendendo
 }
