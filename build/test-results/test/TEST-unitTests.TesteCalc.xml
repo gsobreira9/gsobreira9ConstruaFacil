@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unitTests.TesteCalc" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-06T01:50:52" hostname="LAPTOP-RMM9J72T" time="0.011">
+  <properties/>
+  <testcase name="testarSomarDoisNumeros" classname="unitTests.TesteCalc" time="0.011"/>
+  <system-out><![CDATA[O resultado Esperado Ã©12
+  O resultado  Atual foi12
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
