@@ -21,8 +21,5 @@ public class TesteCalc {
               System.out.println("O resultado Esperado é" + resultadoEsperado +  "\n  O resultado  Atual foi"  + resultadoAtual);
         assertEquals(resultadoEsperado,resultadoAtual);
     }
-    @Test
-
-    public void TestarMain
 
 }
